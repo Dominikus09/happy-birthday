@@ -22,16 +22,15 @@ export default function Index() {
     setNote((pev) => [...pev, e]);
   }
 
-  useEffect(() => {
-    function getdata() {
-      const getNote = localStorage.getItem("note");
-      if (getNote) {
-        setNote(JSON.parse(getNote));
-      }
+  function getdata() {
+    const getNote = localStorage.getItem("note");
+    if (getNote) {
+      setNote(JSON.parse(getNote));
     }
+  }
+  useEffect(() => {
     getdata();
   }, []);
-
   return (
     <Layout title={"Home"}>
       <div>
@@ -98,19 +97,33 @@ export default function Index() {
               ))}
             </div>
             <div className="py-2">
-              <div
+              <button
                 style={{ display: `${edit ? "" : "none"}` }}
                 className="border bg-pink-400 rounded-sm text-white flex flex-col items-center justify-center h-fit hover:bg-pink-300 cursor-pointer"
                 onClick={() => {
-                  handelPlus({
-                    id: note[note.length - 1].id + 1,
-                    isi: "",
-                    status: "1",
-                  });
+                  if (note.length === 0) {
+                    localStorage.setItem(
+                      "note",
+                      JSON.stringify([
+                        {
+                          id: 1,
+                          isi: "",
+                          status: "1",
+                        },
+                      ])
+                    );
+                    getdata();
+                  } else {
+                    handelPlus({
+                      id: note[note.length - 1].id + 1,
+                      isi: "",
+                      status: "1",
+                    });
+                  }
                 }}
               >
                 <div className="px-1 text-[10px]">add</div>
-              </div>
+              </button>
             </div>
 
             <button
