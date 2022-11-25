@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Layout from "../components/layout/layout";
 
 export default function Index() {
@@ -21,6 +21,17 @@ export default function Index() {
   function handelPlus(e) {
     setNote((pev) => [...pev, e]);
   }
+
+  useEffect(() => {
+    function getdata() {
+      const getNote = localStorage.getItem("note");
+      if (getNote) {
+        setNote(JSON.parse(getNote));
+      }
+    }
+    getdata();
+  }, []);
+
   return (
     <Layout title={"Home"}>
       <div>
@@ -107,6 +118,7 @@ export default function Index() {
               className="w-full py-1 rounded-md text-white bg-pink-400 text-xs"
               onClick={() => {
                 setEdit(false);
+                localStorage.setItem("note", JSON.stringify(note));
               }}
             >
               Save
