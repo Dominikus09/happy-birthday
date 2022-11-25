@@ -5,8 +5,8 @@ const nextConfig = {
   rewrites: async () => {
     return [
       {
-        source: "/public/index.htm",
-        destination: "/pages/api/myfile.js",
+        source: "/public/index.html",
+        destination: "/pages/api/index.js",
       },
     ];
   },
