@@ -38,12 +38,13 @@ export default function Index() {
         <div className="border border-pink-400 p-2 rounded-md">
           <div className="border relative border-pink-400 rounded-md p-3 flex flex-col items-center w-full sm:w-fit min-h-[300px]">
             <div
+              style={{ display: `${edit ? "none" : ""}` }}
               className="absolute text-[11px] right-3 top-2 cursor-pointer text-pink-400 hover:text-pink-300"
               onClick={() => {
                 setEdit(true);
               }}
             >
-              Edit
+              Add
             </div>
             <h3 className="py-4 text-pink-400 font-medium">My Daily Note</h3>
             <div className="space-y-3 py-3">
@@ -62,7 +63,7 @@ export default function Index() {
                       <textarea
                         name="isi"
                         type="text"
-                        cols="40"
+                        cols="25"
                         rows="3"
                         placeholder="your note"
                         className="px-2 text-xs py-1 mt-1 resize-y bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-pink-400 focus:ring-pink-400 block w-full rounded-md sm:text-sm focus:ring-1"
